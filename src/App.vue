@@ -1,0 +1,67 @@
+<template>
+  <v-app>
+    <v-navigation-drawer v-model="drawer" height="100%" app clipped>
+      <v-list nav dense>
+        <v-list-item-group
+          v-model="group"
+          active-class="text text--accent-4"
+          color="primary"
+        >
+          <v-list-item to="/home">
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item to="/workouts">
+            <v-list-item-title>My Workouts</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item to="/excercises">
+            <v-list-item-title>Excercises</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item to="/progress">
+            <v-list-item-title>Progress</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item to="/account">
+            <v-list-item-title>Account</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar clipped-left app color="primary" dark height="70px">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <div class="d-flex align-center"></div>
+      <v-spacer></v-spacer>
+      <v-img
+        lazy-src="https://picsum.photos/id/11/10/6"
+        max-height="100"
+        max-width="200"
+        src="@/assets/StriveLogo.png"
+      ></v-img>
+      <v-spacer></v-spacer>
+    </v-app-bar>
+
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
+</template>
+
+<script>
+export default {
+  name: "App",
+
+  data: () => ({
+    drawer: false,
+    group: null,
+  }),
+  watch: {
+    group() {
+      this.drawer = false;
+    },
+  },
+};
+</script>
