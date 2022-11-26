@@ -1,6 +1,6 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require("@vue/cli-service");
+const { shallowReactive } = require("vue");
 module.exports = defineConfig({
-  transpileDependencies: [
-    'vuetify'
-  ]
-})
+  publicPath: "/Strive/",
+  transpileDependencies: ["vuetify"],
+});
