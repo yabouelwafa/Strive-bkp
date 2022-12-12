@@ -1,39 +1,61 @@
 <template>
-  <v-container>
-    <h1 align="center">My Workouts</h1>
-    <div
-      v-for="workout of workouts"
-      :key="workout.id"
-      class="my-2"
-      style="width: 100%; height: 80px"
-    >
-      <v-text-field
-        dark
-        outlined
-        block
-        height="90px"
-        v-model="workout.x"
-        :label="workout.x"
-        class="my-10"
-      />
-    </div>
-    <v-btn class="mt-16" color="accent" rounded block @click="addWorkout()"
-      >+</v-btn
-    >
+  <v-container fill-height>
+    <v-card class="ma-auto" width="600px" height="500px" outlined>
+      <v-list-item three-line>
+        <v-list-item-avatar size="200" color="red"
+          ><v-img src="@/assets/yusuf.jpg"></v-img
+        ></v-list-item-avatar>
+        <v-list-item-content fill-width>
+          <h2 class="ml-1 mt-7 pb-3 pt-5 font-weight-light">
+            YUSUF ABOUELWAFA
+          </h2>
+          <h2 class="ml-1 mb-7 font-weight-light">17 YEARS OLD</h2>
+          <h4 class="ml-2 pb-6 font-weight-light">MEMBER SINCE NOV 12 2022</h4>
+        </v-list-item-content>
+      </v-list-item>
+      <div
+        class="d-flex flex-row mx-auto mt-4 mb-16"
+        justify="center"
+        fill-width
+        style="width: 100%"
+      >
+        <v-spacer />
+        <div>
+          <v-list-item-avatar
+            rounded
+            class="mx-5"
+            max-size="100"
+            size="100"
+            color="red"
+          ></v-list-item-avatar>
+        </div>
+        <div>
+          <v-list-item-avatar
+            rounded
+            class="mx-5"
+            size="100"
+            color="red"
+          ></v-list-item-avatar>
+        </div>
+        <div>
+          <v-list-item-avatar
+            rounded
+            class="mx-5"
+            size="100"
+            color="red"
+          ></v-list-item-avatar>
+        </div>
+        <v-spacer />
+      </div>
+      <v-card-actions>
+        <v-btn block>Edit profile</v-btn>
+      </v-card-actions>
+    </v-card>
   </v-container>
 </template>
 <script>
 export default {
-  data: () => ({
-    workouts: [],
-  }),
-  methods: {
-    addWorkout() {
-      this.workouts.push({
-        id: "#" + this.workouts.length,
-        x: "Workout-" + this.workouts.length,
-      });
-    },
-  },
+  data: () => ({}),
+  methods: {},
 };
 </script>

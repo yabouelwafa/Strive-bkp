@@ -8,6 +8,7 @@ import MyWorkouts from "@/views/MyWorkouts";
 import Excercises from "@/views/Excercises";
 import Progress from "@/views/Progress";
 import Account from "@/views/Account";
+import ForgotPassword from "@/views/ForgotPassword";
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,11 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/forgotPassword",
+    name: "forgotPassword",
+    component: ForgotPassword,
   },
   {
     path: "/home",

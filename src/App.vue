@@ -24,7 +24,7 @@
           </v-list-item>
 
           <v-list-item to="/account">
-            <v-list-item-title>Account</v-list-item-title>
+            <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>

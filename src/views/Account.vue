@@ -3,5 +3,10 @@
 </template>
 
 <script>
-export default {};
+import Account from "@/components/Account.vue";
+export default {
+  components: {
+    Account,
+  },
+};
 </script>
