@@ -6,14 +6,15 @@
       <v-card-text>
         <v-text-field
           class="mb-"
-          label="Username"
+          label="Email"
           outlined
-          v-model="username"
+          v-model="email"
         ></v-text-field>
         <v-text-field
           class="mb-"
           label="Password"
           outlined
+          type="password"
           v-model="password"
         ></v-text-field>
       </v-card-text>
@@ -42,26 +43,30 @@
 </template>
 
 <script>
-import fBAuth from "@/firebase";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 export default {
   name: "HelloWorld",
 
   data: () => ({
     rememberMe: true,
-    username: "",
+    email: "",
     password: "",
   }),
   methods: {
     async doLogin() {
-      signInWithEmailAndPassword(fBAuth, this.username, this.password)
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
+          // Signed in
           const user = userCredential.user;
-          router.push({ name: "excercises" });
+          this.$store.dispatch("setSignedin", true);
+          this.$router.push("home");
+          // ...
         })
         .catch((error) => {
           const errorCode = error.code;
-          f;
           const errorMessage = error.message;
+          alert("Incorrect email or password");
         });
     },
   },

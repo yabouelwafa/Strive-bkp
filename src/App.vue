@@ -31,7 +31,10 @@
     </v-navigation-drawer>
 
     <v-app-bar clipped-left app color="primary" dark height="70px">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        v-if="isSignedin"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
 
       <div class="d-flex align-center"></div>
       <v-spacer></v-spacer>
@@ -42,6 +45,8 @@
         src="@/assets/StriveLogo.png"
       ></v-img>
       <v-spacer></v-spacer>
+      <v-btn v-if="isSignedin" text @click="doSignout()">Sign Out</v-btn>
+      <v-btn v-else text to="/signUp">Sign Up</v-btn>
     </v-app-bar>
 
     <v-main>
@@ -51,6 +56,8 @@
 </template>
 
 <script>
+import { getAuth, signOut } from "firebase/auth";
+
 export default {
   name: "App",
 
@@ -61,6 +68,24 @@ export default {
   watch: {
     group() {
       this.drawer = false;
+    },
+  },
+  computed: {
+    isSignedin() {
+      return this.$store.getters.isSignedin;
+    },
+  },
+  methods: {
+    doSignout() {
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          this.$store.dispatch("setSignedin", false);
+          this.$router.replace("logIn");
+        })
+        .catch((error) => {
+          // An error happened.
+        });
     },
   },
 };
