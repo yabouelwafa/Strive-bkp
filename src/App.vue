@@ -1,6 +1,12 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" height="100%" app clipped>
+    <v-navigation-drawer
+      v-model="drawer"
+      height="100%"
+      width="350px"
+      app
+      clipped
+    >
       <v-list nav dense>
         <v-list-item-group
           v-model="group"
@@ -28,6 +34,21 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
+      <template v-slot:append>
+        <v-card>
+          <div class="pa-2 d-flex flex-row">
+            <h5>Light Mode</h5>
+            <v-switch
+              v-model="$vuetify.theme.dark"
+              inset
+              class="width: 40px pb- ml-16"
+            ></v-switch>
+
+            <v-spacer></v-spacer>
+            <h5 class="ml-9">Dark Mode</h5>
+          </div>
+        </v-card>
+      </template>
     </v-navigation-drawer>
 
     <v-app-bar clipped-left app color="primary" dark height="70px">
@@ -86,6 +107,9 @@ export default {
         .catch((error) => {
           // An error happened.
         });
+    },
+    changeTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
   },
 };
