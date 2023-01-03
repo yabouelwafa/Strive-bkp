@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBx921ntY4_WkukbCWfBtZzfSan1FxMklA",
@@ -11,5 +12,17 @@ const firebaseConfig = {
   measurementId: "G-DYW1H2XCD4",
 };
 
+// rules_version = '2';
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//     match /{document=**} {
+//       allow read, write: if false;
+//     }
+//   }
+// }
+
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
+export { db };
