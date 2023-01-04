@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 align="center">Workouts</h1>
+    <h1 align="center" class="title">Exercises</h1>
 
     <v-expansion-panels focusable>
       <Exercise
@@ -38,3 +38,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.title {
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
