@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     signedIn: false,
     dark: true,
+    email: "",
   },
   getters: {
     isSignedin: (state) => {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     isDark: (state) => {
       return state.dark;
+    },
+    getEmail: (state) => {
+      return state.email;
     },
   },
   mutations: {},
@@ -25,6 +29,10 @@ export default new Vuex.Store({
     darkTheme: (context, dark) => {
       context.state.dark = dark;
     },
+    setEmail: (context, email) => {
+      context.state.email = email;
+    },
   },
+
   modules: {},
 });
