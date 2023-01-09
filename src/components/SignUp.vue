@@ -39,6 +39,8 @@
 
 <script>
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc, getDocs, doc, setDoc } from "firebase/firestore";
+import { db } from "@/firebase";
 
 export default {
   name: "HelloWorld",
@@ -54,11 +56,19 @@ export default {
     doSignUp() {
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
           // Signed in
           const user = userCredential.user;
           alert("success");
-          // ...
+
+          // Add information to database
+          let infoDocName = "Users/" + this.email;
+          const docRef = await setDoc(doc(db, infoDocName), {
+            name: this.name,
+            username: this.username,
+            email: this.email,
+            password: this.password,
+          });
         })
         .catch((error) => {
           const errorCode = error.code;

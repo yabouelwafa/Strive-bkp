@@ -59,10 +59,11 @@ import { db } from "@/firebase";
 export default {
   data: () => ({
     loading: false,
-    showAdd: true,
+    showAdd: false,
 
     //Snackbar
     snackbar: false,
+
     text: "Workout added",
     timeout: 1500,
 
@@ -123,6 +124,6 @@ export default {
 
 <style scoped>
 .title {
-  font-style: italics;
+  font-style: italic;
 }
 </style>
