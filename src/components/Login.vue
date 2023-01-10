@@ -43,7 +43,12 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  signInWithEmailAndPassword,
+  browserLocalPersistence,
+} from "firebase/auth";
 export default {
   name: "HelloWorld",
 
@@ -55,19 +60,33 @@ export default {
   methods: {
     async doLogin() {
       const auth = getAuth();
-      signInWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          this.$store.dispatch("setEmail", user.email);
-          this.$store.dispatch("setSignedin", true);
-          this.$router.push("home");
+
+      setPersistence(auth, browserLocalPersistence)
+        .then(() => {
+          // Existing and future Auth states are now persisted in the current
+          // session only. Closing the window would clear any existing state even
+          // if a user forgets to sign out.
           // ...
+          // New sign-in will be persisted with session persistence.
+          return signInWithEmailAndPassword(auth, this.email, this.password)
+            .then((userCredential) => {
+              // Signed in
+              const user = userCredential.user;
+              this.$store.dispatch("setEmail", user.email);
+              this.$store.dispatch("setSignedin", true);
+              this.$router.push("home");
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              alert("Incorrect email or password");
+            });
         })
         .catch((error) => {
+          // Handle Errors here.
           const errorCode = error.code;
           const errorMessage = error.message;
-          alert("Incorrect email or password");
         });
     },
   },

@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex">
       <div>
-        <h1 class="ml-6 mt-12">Good evening {{ this.info.name }},</h1>
+        <h1 class="ml-6 mt-12">Good evening Yusuf,</h1>
         <h4 class="ml-7 mt-2">What would you like to do today?</h4>
       </div>
       <v-spacer />
@@ -52,11 +52,17 @@ export default {
   data: () => ({
     info: {},
   }),
+  computed: {
+    getDocName() {
+      console.log("TEST PRINT", "Users/" + this.$store.getters.getEmail);
+      return "Users/" + this.$store.getters.getEmail;
+    },
+  },
+
   methods: {
     async getUserInfo() {
-      let name = "Users/" + this.$store.getters.getEmail;
-      console.log("name: " + name);
-      const docRef = doc(db, name);
+      console.log("name: " + this.getDocName);
+      const docRef = doc(db, this.getDocName);
       const docSnap = await getDoc(docRef);
       console.log("X: ", docSnap.id);
       if (docSnap.exists()) {
@@ -70,8 +76,6 @@ export default {
   },
   mounted() {
     this.getUserInfo();
-    console.log();
   },
-  computed: {},
 };
 </script>
