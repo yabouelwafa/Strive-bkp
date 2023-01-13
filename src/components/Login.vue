@@ -74,7 +74,7 @@ export default {
               const user = userCredential.user;
               this.$store.dispatch("setEmail", user.email);
               this.$store.dispatch("setSignedin", true);
-              this.$router.push("home");
+              this.$router.push("dashboard");
               // ...
             })
             .catch((error) => {

@@ -10,7 +10,13 @@
       style="width: 100%; height: 80px"
     >
       <v-sheet outlined color="primary" rounded class="my-6">
-        <v-card height="90px" block outlined color="" class="pa-6">
+        <v-card
+          height="90px"
+          block
+          outlined
+          @click="overlay = !overlay"
+          class="pa-6"
+        >
           <div class="d-flex flex-row">
             <h1>{{ workout.name }}</h1>
           </div>
@@ -50,6 +56,13 @@
         </v-btn>
       </template>
     </v-snackbar>
+
+    <!-- Exercise Overlay -->
+    <v-overlay :absolute="absolute" :opacity="opacity" :value="overlay">
+      <v-btn color="orange lighten-2" @click="overlay = false">
+        Hide Overlay
+      </v-btn>
+    </v-overlay>
   </v-container>
 </template>
 <script>
@@ -63,9 +76,13 @@ export default {
 
     //Snackbar
     snackbar: false,
-
     text: "Workout added",
     timeout: 1500,
+
+    //Exercise overlay
+    absolute: true,
+    opacity: 1,
+    overlay: false,
 
     name: "",
     workouts: [],

@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex">
       <div>
-        <h1 class="ml-6 mt-12">Good evening Yusuf,</h1>
+        <h1 class="ml-6 mt-12">Good evening {{ userInfo.username }},</h1>
         <h4 class="ml-7 mt-2">What would you like to do today?</h4>
       </div>
       <v-spacer />
@@ -44,38 +44,14 @@
 </template>
 
 <script>
-import { doc, getDoc } from "firebase/firestore";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { db } from "@/firebase";
-
 export default {
-  data: () => ({
-    info: {},
-  }),
+  data: () => ({}),
   computed: {
-    getDocName() {
-      console.log("TEST PRINT", "Users/" + this.$store.getters.getEmail);
-      return "Users/" + this.$store.getters.getEmail;
+    userInfo() {
+      return this.$store.getters.getUserInfo;
     },
   },
-
-  methods: {
-    async getUserInfo() {
-      console.log("name: " + this.getDocName);
-      const docRef = doc(db, this.getDocName);
-      const docSnap = await getDoc(docRef);
-      console.log("X: ", docSnap.id);
-      if (docSnap.exists()) {
-        this.info = docSnap.data();
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-      console.log(this.info.name);
-    },
-  },
-  mounted() {
-    this.getUserInfo();
-  },
+  mounted() {},
+  methods: {},
 };
 </script>

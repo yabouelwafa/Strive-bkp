@@ -1,15 +1,13 @@
 <template>
-  <hello-world />
+  <v-container fill-height>
+    <v-card flat class="ma-auto transparent"><h1>Welcome to Strive</h1></v-card>
+  </v-container>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+export default {
+  name: "Home",
 
-  export default {
-    name: 'Home',
-
-    components: {
-      HelloWorld,
-    },
-  }
+  components: {},
+};
 </script>

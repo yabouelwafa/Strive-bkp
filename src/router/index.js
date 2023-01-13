@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import Login from "@/views/Login";
 import SignUp from "@/views/SignUp";
-import Home from "@/views/Home";
+import Dashboard from "@/views/Dashboard";
 import MyWorkouts from "@/views/MyWorkouts";
 import Excercises from "@/views/Excercises";
 import Progress from "@/views/Progress";
@@ -24,9 +24,9 @@ const routes = [
     component: ForgotPassword,
   },
   {
-    path: "/home",
-    name: "mainHome",
-    component: Home,
+    path: "/dashboard",
+    name: "dashboard",
+    component: Dashboard,
   },
   {
     path: "/workouts",

@@ -9,6 +9,9 @@ export default new Vuex.Store({
     signedIn: false,
     dark: true,
     email: "",
+    userInfo: {
+      name: "",
+    },
   },
   getters: {
     isSignedin: (state) => {
@@ -19,6 +22,9 @@ export default new Vuex.Store({
     },
     getEmail: (state) => {
       return state.email;
+    },
+    getUserInfo: (state) => {
+      return state.userInfo;
     },
   },
   mutations: {},
@@ -31,6 +37,22 @@ export default new Vuex.Store({
     },
     setEmail: (context, email) => {
       context.state.email = email;
+    },
+    setUserInfo: (context, userInfo) => {
+      context.state.userInfo = userInfo;
+    },
+
+    /**
+     * Clear the store after the user logs out
+     *
+     * @param {context} context
+     */
+    clearStore: (context) => {
+      context.state.signedIn = false;
+      context.state.email = "";
+      context.state.userInfo = {
+        name: "",
+      };
     },
   },
 

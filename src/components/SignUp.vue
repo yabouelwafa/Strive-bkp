@@ -5,11 +5,13 @@
       <v-card-subtitle>Please enter your information</v-card-subtitle>
       <v-card-text>
         <v-text-field
-          label="Name (First - Last)"
+          label="Name (First Last)"
           outlined
           v-model="name"
         ></v-text-field>
         <v-text-field label="Email" outlined v-model="email"></v-text-field>
+        <v-text-field label="Age" outlined v-model="age"></v-text-field>
+
         <v-text-field
           label="Username"
           outlined
@@ -51,6 +53,7 @@ export default {
     username: "",
     email: "",
     password: "",
+    age: "",
   }),
   methods: {
     doSignUp() {
@@ -63,11 +66,14 @@ export default {
 
           // Add information to database
           let infoDocName = "Users/" + this.email;
+          let email = this.email.toLowerCase();
+
           const docRef = await setDoc(doc(db, infoDocName), {
             name: this.name,
             username: this.username,
-            email: this.email,
+            email: email,
             password: this.password,
+            age: this.age,
           });
         })
         .catch((error) => {

@@ -13,7 +13,7 @@
           active-class="text text--accent-4"
           color="primary"
         >
-          <v-list-item to="/home">
+          <v-list-item to="/dashboard">
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
 
@@ -34,10 +34,10 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-      <template v-slot:append>
+      <template class="mt-16">
         <v-card>
           <div class="pa-2 d-flex flex-row">
-            <h5>Light Mode</h5>
+            <h5 class="mt-6">Light Mode</h5>
             <v-switch
               v-model="$vuetify.theme.dark"
               inset
@@ -45,7 +45,7 @@
             ></v-switch>
 
             <v-spacer></v-spacer>
-            <h5 class="ml-9">Dark Mode</h5>
+            <h5 class="ml-9 mt-6">Dark Mode</h5>
           </div>
         </v-card>
       </template>
@@ -102,7 +102,7 @@ export default {
       signOut(auth)
         .then(() => {
           this.$store.dispatch("setSignedin", false);
-          this.$router.replace("logIn");
+          // this.$router.replace("logIn");
         })
         .catch((error) => {
           // An error happened.
